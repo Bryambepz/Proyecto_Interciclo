@@ -5,24 +5,38 @@
  */
 package ec.edu.ups.modelo;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author braya
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private int id;
     private String cedula;
     private String nombre;
     private String apellido;
     private String correo;
     private String cotrasenia;
-
-    public Usuario() {}
     
-    public Usuario(int id, String cedula, String nombre, String apellido, String correo, String cotrasenia) {
-        this.id = id;
+    private List<Automovil> listaAutomoviles;
+
+    public Usuario() {
+        this.listaAutomoviles = new ArrayList<>();
+    }
+    
+    /**
+     *
+     * @param cedula
+     * @param nombre
+     * @param apellido
+     * @param correo
+     * @param cotrasenia
+     */
+    public Usuario(String cedula, String nombre, String apellido, String correo, String cotrasenia) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -111,9 +125,17 @@ public class Usuario {
         return true;
     }
 
+    public List<Automovil> getListaAutomoviles() {
+        return listaAutomoviles;
+    }
+
+    public void setListaAutomoviles(List<Automovil> listaAutomoviles) {
+        this.listaAutomoviles = listaAutomoviles;
+    }
+
     @Override
     public String toString() {
-        return "Usuario ----> " + "id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", cotrasenia=" + cotrasenia ;
+        return "Usuario{" + "id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", cotrasenia=" + cotrasenia + ", listaAutomoviles=" + listaAutomoviles + '}';
     }
     
 }
