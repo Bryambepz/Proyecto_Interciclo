@@ -10,27 +10,32 @@
             <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="registrarMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="registrarAdminMenuItem">
               <Properties>
                 <Property name="mnemonic" type="int" value="111"/>
-                <Property name="text" type="java.lang.String" value="Registrar"/>
+                <Property name="text" type="java.lang.String" value="Registrar Admin"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarMenuItemActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarAdminMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="saveMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="registarUMenuItem">
               <Properties>
                 <Property name="mnemonic" type="int" value="115"/>
-                <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="text" type="java.lang.String" value="Registrar Usuario"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registarUMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="saveAsMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="iniciarSesionMenuItem">
               <Properties>
                 <Property name="mnemonic" type="int" value="97"/>
-                <Property name="text" type="java.lang.String" value="Save As ..."/>
-                <Property name="displayedMnemonicIndex" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="Iniciar Sesion"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iniciarSesionMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
               <Properties>
@@ -43,28 +48,31 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="editMenu">
+        <Menu class="javax.swing.JMenu" name="gestionMenu">
           <Properties>
             <Property name="mnemonic" type="int" value="101"/>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Gestion"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="cutMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="listarMenuItem">
               <Properties>
                 <Property name="mnemonic" type="int" value="116"/>
-                <Property name="text" type="java.lang.String" value="Cut"/>
+                <Property name="text" type="java.lang.String" value="Listar  Contratos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listarMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="copyMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="reservarMenuItem">
               <Properties>
                 <Property name="mnemonic" type="int" value="121"/>
-                <Property name="text" type="java.lang.String" value="Copy"/>
+                <Property name="text" type="java.lang.String" value="Reservar"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="pasteMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="retirarMenuItem">
               <Properties>
                 <Property name="mnemonic" type="int" value="112"/>
-                <Property name="text" type="java.lang.String" value="Paste"/>
+                <Property name="text" type="java.lang.String" value="Retirar"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="deleteMenuItem">

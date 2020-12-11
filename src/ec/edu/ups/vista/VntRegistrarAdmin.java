@@ -5,9 +5,9 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorAdmin;
 import ec.edu.ups.controlador.ControladorUsuario;
-import ec.edu.ups.modelo.Usuario;
-import java.io.FileNotFoundException;
+import ec.edu.ups.modelo.Admin;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,19 +19,25 @@ import javax.swing.JOptionPane;
  *
  * @author braya
  */
-public class VntRegistrar extends javax.swing.JInternalFrame {
+public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
 
-    private ControladorUsuario ctrlUsuario;
-    public static String ruta = "C:\\Users\\braya\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto_Interciclo\\registrarUsuario";
+    private ControladorAdmin ctrlAdmin;
+    private ControladorUsuario ctrlUsuario; 
+    private VntPrincipal vntPrincipal;
+
+    public static String ruta = "C:\\Users\\braya\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto_Interciclo\\registrarAdmin";
 
     /**
      * Creates new form VntRegistrar
      *
-     * @param ctrlUsuario
+     * @param ctrlAdmin
+     * @param vntPrincipal
      */
-    public VntRegistrar(ControladorUsuario ctrlUsuario) {
+    public VntRegistrarAdmin(ControladorUsuario ctrlUsuario, ControladorAdmin ctrlAdmin, VntPrincipal vntPrincipal) {
         initComponents();
+        this.ctrlAdmin = ctrlAdmin;
         this.ctrlUsuario = ctrlUsuario;
+        this.vntPrincipal = vntPrincipal;
     }
 
     /**
@@ -43,6 +49,7 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtApellidp1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -59,6 +66,8 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
         txtContrasenia = new javax.swing.JPasswordField();
         btnRegistrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtNumero = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Registrar");
@@ -119,36 +128,53 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setText("Numero de estacionamientos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(btnRegistrar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCedula)
-                    .addComponent(txtNombre)
-                    .addComponent(txtApellidp)
-                    .addComponent(btnCancelar)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtContrasenia)
-                    .addComponent(txtTelefono)
-                    .addComponent(cbxTipoTelf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGap(72, 72, 72)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtContrasenia)
+                                    .addComponent(txtTelefono)
+                                    .addComponent(cbxTipoTelf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRegistrar)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnCancelar)
+                                .addGap(63, 63, 63)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(28, 28, 28)
+                                .addComponent(txtNumero))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(138, 138, 138)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(txtNombre)
+                                    .addComponent(txtApellidp))))
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +191,10 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtApellidp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -185,7 +215,7 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnCancelar))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,6 +230,7 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
         String cedula = txtCedula.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellidp.getText();
+        int lugares = Integer.valueOf(txtNumero.getText());
         int opcion = cbxTipoTelf.getSelectedIndex();
         String telefono = txtTelefono.getText();
         String correo = txtCorreo.getText();
@@ -209,21 +240,27 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
                 || telefono.isBlank() || correo.isBlank() || contrasenia.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Existen campos en blanco");
         } else {
-            if (ctrlUsuario.comprobarDatos(correo, cedula)) {
-                if (telefono(telefono) && cedula(cedula) && correoC(correo)) {
+            System.out.println("---? " + ctrlAdmin.comprobarDatosAdmin(correo, cedula));
+            if (ctrlAdmin.comprobarDatosAdmin(correo, cedula) && ctrlUsuario.comprobarDatos(correo, cedula)) {
+                if (telefono(telefono) && cedula(cedula) && correoC(correo) && lugares >= 9) {
                     try {
-                        var usuario = new Usuario(cedula, nombre, apellido, correo, contrasenia);
-                        ctrlUsuario.create(usuario);
-                        System.out.println("---> " + usuario);
-                        ctrlUsuario.guardarDatos(ruta);
+                        var admin = new Admin(lugares, cedula, nombre, apellido, correo, contrasenia);
+                        ctrlAdmin.create(admin);
+                        System.out.println("---> " + admin);
+                        ctrlAdmin.guardarDatos(ruta);
                     } catch (IOException ex) {
-                        Logger.getLogger(VntRegistrar.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(VntRegistrarAdmin.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     JOptionPane.showMessageDialog(this, "Registrado Correctamente");
                     this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(this, "Existen datos incorrectos");
-                    
+                    vntPrincipal.getRegistrarAdminMenuItem().setVisible(false);
+                } else {
+                    if (lugares < 9) {
+                        JOptionPane.showMessageDialog(this, "Hay pocos lugares de estacionamientos, \n"
+                                + "Ingrese numero mayor a 9");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Existen datos incorrectos");
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Hay datos que ya se han registrados anteriormente");
@@ -241,7 +278,7 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
         if (cbxTipoTelf.getSelectedIndex() == 1) {
             txtTelefono.setEditable(true);
             txtTelefono.setText("2424242");
-        }else if (cbxTipoTelf.getSelectedIndex() == 2) {
+        } else if (cbxTipoTelf.getSelectedIndex() == 2) {
             txtTelefono.setEditable(true);
             txtTelefono.setText("0984851714");
         }
@@ -270,14 +307,14 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
         System.out.println("2 " + m.matches());
         return m.matches();
     }
-    
-    public boolean correoC(String correo){
+
+    public boolean correoC(String correo) {
         Pattern texto = Pattern.compile("^\\S\\w{3,}@\\w{2,}(\\.\\w{2,})+$");
         Matcher corpus = texto.matcher(correo);
         System.out.println("3 " + corpus.matches());
         return corpus.matches();
     }
-    
+
     public void limpiar() {
         txtNombre.setText("");
         txtApellidp.setText("");
@@ -285,7 +322,7 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
         txtContrasenia.setText("");
         cbxTipoTelf.getItemAt(0);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrar;
@@ -297,11 +334,14 @@ public class VntRegistrar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtApellidp;
+    private javax.swing.JTextField txtApellidp1;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

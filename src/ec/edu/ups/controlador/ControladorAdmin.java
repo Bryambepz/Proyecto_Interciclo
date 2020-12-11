@@ -5,28 +5,23 @@
  */
 package ec.edu.ups.controlador;
 
-import ec.edu.ups.modelo.Persona;
-import ec.edu.ups.modelo.Usuario;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.stream.Stream;
+import ec.edu.ups.modelo.Admin;
 
 /**
  *
  * @author braya
  */
-public class ControladorUsuario extends ControladorAbstracto<Usuario> {
+public class ControladorAdmin extends ControladorAbstracto<Admin> {
 
-//    private static Usuario usuario;
-    private static ControladorUsuario instancia;
+    private static ControladorAdmin instancia;
 
-    private ControladorUsuario() {
+    private ControladorAdmin() {
         super();
     }
 
-    public static ControladorUsuario getInstancia() {
+    public static ControladorAdmin getInstancia() {
         if (instancia == null) {
-            instancia = new ControladorUsuario();
+            instancia = new ControladorAdmin();
         }
         return instancia;
     }
@@ -35,17 +30,13 @@ public class ControladorUsuario extends ControladorAbstracto<Usuario> {
      *
      * @param correo
      * @param cedula
-     * @param ruta
      * @return
-     * @throws IOException
-     * @throws FileNotFoundException
-     * @throws ClassNotFoundException
      */
-    public boolean comprobarDatos(String correo, String cedula){
-        return getListaObjetos().stream().filter(c -> correo.equals(c.getCorreo()) && cedula.equals(c.getCedula()))
-                .noneMatch(c1 -> c1.equals(correo) && c1.equals(cedula));
+    public boolean comprobarDatosAdmin(String correo, String cedula) {
+            return getListaObjetos().stream().filter(c -> correo.equals(c.getCorreo()) && cedula.equals(c.getCedula()))
+                    .noneMatch(c1 -> c1.getCorreo().equals(correo) && c1.getCedula().equals(cedula));
     }
-    
+
     /**
      *
      * @param correo
