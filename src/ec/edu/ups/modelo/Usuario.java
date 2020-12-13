@@ -39,6 +39,26 @@ public class Usuario extends Persona implements Serializable{
         return listaAutomoviles.add(auto);
     }
     
+    public Automovil buscar(int id){
+        for (int i = 0; i < listaAutomoviles.size(); i++) {
+            Automovil get = listaAutomoviles.get(i);
+            if (id == get.getTicket().getId()) {
+                return get;
+            }
+        }
+        return null;
+    }
+    
+    public Automovil actualizar(int id){
+        for (int i = 0; i < listaAutomoviles.size(); i++) {
+            Automovil auto = listaAutomoviles.get(i);
+            if (auto.getTicket().getId() == id) {
+                return auto;
+            }
+        }
+        return null;
+    }
+    
     @Override
     public String toString() {
         return super.toString() + "\n---> Usuario ---> " + "listaAutomoviles=" + listaAutomoviles + '}';

@@ -5,22 +5,32 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.controlador.ControladorAdmin;
+import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Automovil;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author braya
  */
 public class VntRetirar extends javax.swing.JInternalFrame {
-    private ControladorAdmin ctrlAdmin;
+
+    private ControladorUsuario ctrlUsuario;
     private VntPrincipal vntPrincipal;
+    private LocalDateTime horaSalida;
+    private Date FechaSalida;
+
     /**
      * Creates new form VntRetirar
      */
-    public VntRetirar(ControladorAdmin ctrlAdmin, VntPrincipal vntPrincipal) {
+    public VntRetirar(ControladorUsuario ctrlUsuario, VntPrincipal vntPrincipal) {
         initComponents();
-        this.ctrlAdmin = ctrlAdmin;
+        this.ctrlUsuario = ctrlUsuario;
         this.vntPrincipal = vntPrincipal;
+
     }
 
     /**
@@ -32,21 +42,284 @@ public class VntRetirar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        btnVerificar = new javax.swing.JButton();
+        txtCedula = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
+        txtPlaca = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
+        txtColor = new javax.swing.JTextField();
+        txtTipoC = new javax.swing.JTextField();
+        txtTotalPagar = new javax.swing.JTextField();
+        txtFechaI = new javax.swing.JTextField();
+        txtFechaSalida = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        bntFactura = new javax.swing.JButton();
+
+        jLabel7.setText("Numero estacionamiento");
+
+        setTitle("Retirar");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/klipartz.com.png"))); // NOI18N
+
+        jLabel1.setText("Ingrese Id");
+
+        btnVerificar.setText("Verificar");
+        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerificarActionPerformed(evt);
+            }
+        });
+
+        txtCedula.setEditable(false);
+
+        txtNombre.setEditable(false);
+
+        txtApellido.setEditable(false);
+
+        jLabel2.setText("Cedula");
+
+        jLabel3.setText("Nombre");
+
+        jLabel4.setText("Apellido");
+
+        txtTelefono.setEditable(false);
+
+        txtNumero.setEditable(false);
+
+        txtPlaca.setEditable(false);
+
+        txtModelo.setEditable(false);
+
+        txtColor.setEditable(false);
+
+        txtTipoC.setEditable(false);
+
+        txtTotalPagar.setEditable(false);
+
+        txtFechaI.setEditable(false);
+
+        txtFechaSalida.setEditable(false);
+
+        jLabel5.setText("Telefono");
+
+        jLabel6.setText("Numero estacionamiento");
+
+        jLabel8.setText("Placa");
+
+        jLabel9.setText("Modelo");
+
+        jLabel10.setText("Color");
+
+        jLabel11.setText("Tipo de Contrato");
+
+        jLabel12.setText("Fecha de Ingreso");
+
+        jLabel13.setText("Fecha de salida");
+
+        jLabel14.setText("Total a Pagar");
+
+        bntFactura.setText("Generar Factura");
+        bntFactura.setEnabled(false);
+        bntFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntFacturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addGap(92, 92, 92)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                        .addGap(123, 123, 123))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtCedula)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNumero, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPlaca)
+                            .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtColor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTipoC, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFechaI, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFechaSalida, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVerificar)
+                        .addGap(32, 32, 32))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(bntFactura)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVerificar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTipoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFechaI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(bntFactura)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
+        // TODO add your handling code here:
+        if (txtId.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Ingrese dato");
+        } else {
+            var ticket = ctrlUsuario.obtenerSesion().buscar(Integer.valueOf(txtId.getText()));
+            
+            if (ticket != null) {
+                var datosUsuarioT = ticket.getTicket();
+                txtCedula.setText(datosUsuarioT.getCedula());
+                txtNombre.setText(datosUsuarioT.getNombre());
+                txtApellido.setText(datosUsuarioT.getApellido());
+                txtTelefono.setText(datosUsuarioT.getTelefono());
+                txtNumero.setText(String.valueOf(datosUsuarioT.getLugar()));
+                txtPlaca.setText(ticket.getPlaca());
+                txtModelo.setText(ticket.getModelo());
+                txtColor.setText(ticket.getColor());
+                horaSalida = LocalDateTime.now();
+                FechaSalida = java.sql.Timestamp.valueOf(horaSalida);
+                txtFechaSalida.setText(FechaSalida.toString());
+                txtFechaI.setText(ticket.getTicket().getFechaIngreso().toString());
+                txtTipoC.setText(datosUsuarioT.getTipoContrato());
+                bntFactura.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese id valido");
+            }
+        }
+    }//GEN-LAST:event_btnVerificarActionPerformed
+
+    private void bntFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFacturaActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Imprimiendo Factura");
+        var id = ctrlUsuario.obtenerSesion().actualizar(Integer.valueOf(txtId.getText()));
+        id.getTicket().setFechaSalida(LocalDateTime.parse(txtFechaSalida.getText(), DateTimeFormatter.ISO_DATE_TIME));
+
+    }//GEN-LAST:event_bntFacturaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntFactura;
+    private javax.swing.JButton btnVerificar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtColor;
+    private javax.swing.JTextField txtFechaI;
+    private javax.swing.JTextField txtFechaSalida;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtPlaca;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTipoC;
+    private javax.swing.JTextField txtTotalPagar;
     // End of variables declaration//GEN-END:variables
 }

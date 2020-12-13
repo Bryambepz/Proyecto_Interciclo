@@ -18,20 +18,19 @@ public class Ticket extends Persona implements Serializable{
     private LocalDateTime fechaIngreso;
     private LocalDateTime fechaSalida;
     private String tipoContrato;
-    private Automovil ticketAuto;
+//    private Automovil ticketAuto;
 
     public Ticket() {
     }
 
-    public Ticket(int id, int lugar, LocalDateTime fechaIngreso, String tipoContrato, Automovil ticketAuto, String cedula, String nombre, String apellido, String telefono) {
+    public Ticket(int id, int lugar, LocalDateTime fechaIngreso, String tipoContrato, String cedula, String nombre, String apellido, String telefono) {
         super(cedula, nombre, apellido, telefono);
         this.id = id;
         this.lugar = lugar;
         this.fechaIngreso = fechaIngreso;
         this.tipoContrato = tipoContrato;
-        this.ticketAuto = ticketAuto;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -72,13 +71,13 @@ public class Ticket extends Persona implements Serializable{
         this.tipoContrato = tipoContrato;
     }
 
-    public Automovil getTicketAuto() {
-        return ticketAuto;
-    }
-
-    public void setTicketAuto(Automovil ticketAuto) {
-        this.ticketAuto = ticketAuto;
-    }
+//    public Automovil getTicketAuto() {
+//        return ticketAuto;
+//    }
+//
+//    public void setTicketAuto(Automovil ticketAuto) {
+//        this.ticketAuto = ticketAuto;
+//    }
     
     @Override
     public int hashCode() {

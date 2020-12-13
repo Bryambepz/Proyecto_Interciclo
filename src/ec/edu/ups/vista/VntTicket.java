@@ -171,6 +171,7 @@ public class VntTicket extends javax.swing.JInternalFrame {
         txtFechaI.setEditable(false);
         jScrollPane12.setViewportView(txtFechaI);
 
+        btnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/klipartz.com.png"))); // NOI18N
         btnConfirmar.setText("Confirrmar y Generar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,14 +324,14 @@ public class VntTicket extends javax.swing.JInternalFrame {
         String modelo = txtModelo.getText();
         String color = txtColor.getText();
 
-        LocalDateTime hoaI = LocalDateTime.parse(txtFechaI.getText(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        LocalDateTime hoaI = LocalDateTime.parse(txtFechaI.getText(), DateTimeFormatter.ISO_LOCAL_DATE);
 
         try {
             // TODO add your handling code here:
-            var auto = new Automovil(placa, modelo, color);
-            var ticket = new Ticket(id, lugar, hoaI, tipoC, auto, cedula, nombre, apellido, telefono);
+//            var auto = new Automovil(placa, modelo, color);
+            var ticket = new Ticket(id, lugar, hoaI, tipoC, cedula, nombre, apellido, telefono);
             var autot = new Automovil(placa, modelo, color, ticket);
-            ctrlUsuario.obtenerSesion().create(auto);
+            ctrlUsuario.obtenerSesion().create(autot);
             ctrlAuto.create(autot);
             ctrlTicker.create(ticket);
 

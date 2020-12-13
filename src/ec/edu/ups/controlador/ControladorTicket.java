@@ -19,19 +19,8 @@ public class ControladorTicket extends ControladorAbstracto<Ticket> {
     }
 
     public int generarID() {
-        if (getListaObjetos().isEmpty()) {
-            for (Ticket list : getListaObjetos()) {
-                Method[] metodos = list.getClass().getMethods();
-                for (Method m : metodos) {
-                    if (m.getName().equals("getId")) {
-                        try {
-                            int id = (int) m.invoke(list, null);
-                            return id;
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-            }
+        if (!getListaObjetos().isEmpty()) {
+            return getListaObjetos().size();
         }
         return 0;
     }

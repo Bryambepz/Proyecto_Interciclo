@@ -185,7 +185,7 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,6 +226,7 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
                         ctrlUsuario.guardarDatos(ruta2);
                         ctrlAdmin.guardarDatos(ruta);
                         JOptionPane.showMessageDialog(this, "Registrado Correctamente");
+                        System.out.println("\n---> \n" + ctrlAdmin.obtenerSesion().getListaUsuarios());
                         this.dispose();
                     } catch (IOException ex) {
                         Logger.getLogger(VntRegistrarUsuario.class.getName()).log(Level.SEVERE, null, ex);

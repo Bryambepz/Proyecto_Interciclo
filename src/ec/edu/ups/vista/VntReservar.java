@@ -11,7 +11,10 @@ import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.modelo.Admin;
 import ec.edu.ups.modelo.Automovil;
+import ec.edu.ups.modelo.Usuario;
 import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -1168,8 +1171,62 @@ public class VntReservar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton40ActionPerformed
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // TODO add your handling code here:
+        panelParqueo.setVisible(true);
         cantidadLibres = ctrlAdmin.obtenerSesion().getLugares();
+        ArrayList<JButton> botones = new ArrayList<>();
+        botones.add(jButton1);
+        botones.add(jButton2);
+        botones.add(jButton3);
+        botones.add(jButton4);
+        botones.add(jButton5);
+        botones.add(jButton6);
+        botones.add(jButton7);
+        botones.add(jButton8);
+        botones.add(jButton9);
+        botones.add(jButton10);
+        botones.add(jButton11);
+        botones.add(jButton12);
+        botones.add(jButton13);
+        botones.add(jButton14);
+        botones.add(jButton15);
+        botones.add(jButton16);
+        botones.add(jButton17);
+        botones.add(jButton18);        
+        botones.add(jButton19);
+        botones.add(jButton20);
+        botones.add(jButton21);
+        botones.add(jButton22);
+        botones.add(jButton23);
+        botones.add(jButton24);
+        botones.add(jButton25);
+        botones.add(jButton26);
+        botones.add(jButton27);
+        botones.add(jButton28);
+        botones.add(jButton29);
+        botones.add(jButton30);
+        botones.add(jButton31);
+        botones.add(jButton32);
+        botones.add(jButton33);
+        botones.add(jButton34);
+        botones.add(jButton35);
+        botones.add(jButton36);
+        botones.add(jButton37);
+        botones.add(jButton38);
+        botones.add(jButton39);
+        botones.add(jButton40);
+        
         mostrarGrafica();
+
+        for (int i = 0; i < botones.size(); i++) {
+            if (!ctrlAdmin.obtenerSesion().getListaAutomoviles().isEmpty()) {
+                int lugares = ctrlAdmin.obtenerSesion().getListaAutomoviles().get(i).getTicket().getLugar();
+                if (lugares == Integer.valueOf(botones.get(i).getText())) {
+                    botones.get(i).setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+                }
+                System.out.println("vacio");
+            }
+        }
+        System.out.println("*-*- " + cantidadLibres + " + " + cantidadOcupados);
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
@@ -1182,11 +1239,11 @@ public class VntReservar extends javax.swing.JInternalFrame {
         if (cbx > 0 && !lugar.isBlank() && !placa.isBlank() && !modelo.isBlank() && !color.isBlank()) {
             ctrlAdmin.obtenerSesion().setLugares(cantidadLibres);
             var nuevo = ctrlAdmin.obtenerSesion();
-            ctrlAdmin.actualizar(new Admin(cantidadLibres, cantidadOcupados, modelo, color, modelo, color, color, color));
-            var auto = new Automovil(placa, modelo, color);
-            ctrlAuto.create(auto);
-            ctrlUsuario.obtenerSesion().create(auto);
-            JOptionPane.showMessageDialog(this, "Generado Ticket");
+            ctrlAdmin.actualizar(new Admin(cantidadLibres, cantidadOcupados, nuevo.getCedula(), nuevo.getNombre(), nuevo.getApellido(), nuevo.getTelefono(), nuevo.getCorreo(), nuevo.getCotrasenia()));
+//            var auto = new Automovil(placa, modelo, color);
+//            ctrlAuto.create(auto);
+//            ctrlUsuario.obtenerSesion().create(auto);
+            JOptionPane.showMessageDialog(this, "Generando Ticket");
             this.dispose();
             vntPrincipal.getDesktopPane().add(vntTicket); 
             vntTicket.setVisible(true);

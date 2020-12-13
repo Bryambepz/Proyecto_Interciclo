@@ -47,7 +47,7 @@ public class VntPrincipal extends javax.swing.JFrame {
         vntIniciar = new VntIniciarsesion(ctrlUsuario, ctrlAdmin, this);
         vntListar = new VntListarEstacionamientosOcupados(ctrlAdmin, this);
         vntReservar = new VntReservar(ctrlAdmin, ctrlUsuario, ctrlAuto, ctrlTicket, this, vntTicket);
-        vntRetirar = new VntRetirar(ctrlAdmin, this);
+        vntRetirar = new VntRetirar(ctrlUsuario, this);
         vntTicket = new VntTicket(ctrlAdmin, ctrlUsuario, ctrlAuto, ctrlTicket, vntReservar);
         //
         gestionMenu.setVisible(false);
