@@ -46,6 +46,7 @@ public class ControladorUsuario extends ControladorAbstracto<Usuario> {
                 .noneMatch(c1 -> c1.equals(correo) && c1.equals(cedula));
     }
     
+    Usuario obtenerSesion;
     /**
      *
      * @param correo
@@ -53,9 +54,19 @@ public class ControladorUsuario extends ControladorAbstracto<Usuario> {
      * @return
      */
     public boolean iniciarSesion(String correo, String contrasenia) {
-        return getListaObjetos().stream().filter(c -> correo.equals(c.getCorreo()) && contrasenia.equals(c.getCotrasenia())).anyMatch(c1 -> correo.equals(c1.getCorreo()) && contrasenia.equals(c1.getCotrasenia()));
+        for (int i = 0; i < getListaObjetos().size(); i++) {
+            var admin = getListaObjetos().get(i);
+            if (correo.equals(admin.getCorreo()) && contrasenia.equals(admin.getCotrasenia())) {
+                obtenerSesion = admin;
+                return true;
+            }
+        }
+        return false;
     }
     
+    public Usuario obtenerSesion(){
+        return obtenerSesion;
+    }
 //    public static Usuario registar() {
 //        if (usuario == null) {
 //            usuario = new Usuario();

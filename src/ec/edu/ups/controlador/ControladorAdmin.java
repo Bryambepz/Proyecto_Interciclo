@@ -36,7 +36,8 @@ public class ControladorAdmin extends ControladorAbstracto<Admin> {
             return getListaObjetos().stream().filter(c -> correo.equals(c.getCorreo()) && cedula.equals(c.getCedula()))
                     .noneMatch(c1 -> c1.getCorreo().equals(correo) && c1.getCedula().equals(cedula));
     }
-
+    
+    Admin obtenerSesion;
     /**
      *
      * @param correo
@@ -44,11 +45,26 @@ public class ControladorAdmin extends ControladorAbstracto<Admin> {
      * @return
      */
     public boolean iniciarSesion(String correo, String contrasenia) {
-        return getListaObjetos().stream().filter(c -> correo.equals(c.getCorreo()) && contrasenia.equals(c.getCotrasenia())).anyMatch(c1 -> correo.equals(c1.getCorreo()) && contrasenia.equals(c1.getCotrasenia()));
+        for (int i = 0; i < getListaObjetos().size(); i++) {
+            var admin = getListaObjetos().get(i);
+            if (correo.equals(admin.getCorreo()) && contrasenia.equals(admin.getCotrasenia())) {
+                obtenerSesion = admin;
+                return true;
+            }
+        }
+        return false;
     }
     
-//    public static Usuario registar() {
-//        if (usuario == null) {
+    public Admin obtenerSesion(){
+        return obtenerSesion;
+    }
+    
+    public Admin actualizar(Admin admni){
+        return getListaObjetos().set(0, admni);
+    }
+    
+//    public static Admin registar() {
+//        if (admin == null) {
 //            usuario = new Usuario();
 //        }
 //        return usuario;

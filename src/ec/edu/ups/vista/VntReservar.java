@@ -5,23 +5,84 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorAdmin;
+import ec.edu.ups.controlador.ControladorAutomovil;
+import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Admin;
+import ec.edu.ups.modelo.Automovil;
+import java.awt.Component;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
  * @author braya
  */
 public class VntReservar extends javax.swing.JInternalFrame {
+
     private ControladorUsuario ctrlUsuario;
+    private ControladorAdmin ctrlAdmin;
+    private ControladorAutomovil ctrlAuto;
+    private ControladorTicket ctrlTicket;
     private VntPrincipal vntPrincipal;
-    
+    private VntTicket vntTicket;
+
+    public int cantidadLibres;
+    private int cantidadOcupados;
+    private DefaultCategoryDataset categoria;
+    private JFreeChart Fc;
+    private ChartFrame Cf;
+
     /**
      * Creates new form VntReservar
+     *
+     * @param ctrlAdmin
+     * @param ctrlUsuario
+     * @param ctrlAuto
+     * @param vntPrincipal
+     * @param vntTicket
      */
-    public VntReservar(ControladorUsuario ctrlUsuario, VntPrincipal vntPrincipal) {
+    public VntReservar(ControladorAdmin ctrlAdmin, ControladorUsuario ctrlUsuario, ControladorAutomovil ctrlAuto, ControladorTicket ctrlTicket, VntPrincipal vntPrincipal, VntTicket vntTicket) {
         initComponents();
+        this.ctrlAdmin = ctrlAdmin;
         this.ctrlUsuario = ctrlUsuario;
+        this.ctrlAuto = ctrlAuto;
+        this.ctrlTicket = ctrlTicket;
         this.vntPrincipal = vntPrincipal;
+        this.vntTicket = new VntTicket(ctrlAdmin, ctrlUsuario, ctrlAuto, ctrlTicket, this);
+        //cantidadLibres = 40;
+        cantidadOcupados = 0;
+        categoria = new DefaultCategoryDataset();
+        Fc = ChartFactory.createBarChart3D("Parqueadero", "Comparar lugares", "Cantidad lugares", categoria, PlotOrientation.HORIZONTAL, true, true, true);
+        Cf = new ChartFrame("Cantidad de Lugares", Fc);
+    }
+
+    public JTextPane getTxtLugar() {
+        return txtLugar;
+    }
+
+    public JComboBox<String> getCbxTipoC() {
+        return cbxTipoC;
+    }
+
+    public JTextField getTxtColor() {
+        return txtColor;
+    }
+
+    public JTextField getTxtModelo() {
+        return txtModelo;
+    }
+
+    public JTextField getTxtPlaca() {
+        return txtPlaca;
     }
 
     /**
@@ -33,21 +94,1197 @@ public class VntReservar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panelParqueo = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        jButton25 = new javax.swing.JButton();
+        jButton26 = new javax.swing.JButton();
+        jButton27 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
+        jButton29 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jButton31 = new javax.swing.JButton();
+        jButton32 = new javax.swing.JButton();
+        jButton33 = new javax.swing.JButton();
+        jButton34 = new javax.swing.JButton();
+        jButton35 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
+        jButton38 = new javax.swing.JButton();
+        jButton39 = new javax.swing.JButton();
+        jButton40 = new javax.swing.JButton();
+        cbxTipoC = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtPlaca = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
+        txtColor = new javax.swing.JTextField();
+        btnGenerar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtLugar = new javax.swing.JTextPane();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jLabel20.setText("$60");
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("Reservar");
+        setAutoscrolls(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/klipartz.com.png"))); // NOI18N
+        setName(""); // NOI18N
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
+        jLabel1.setText("Elija lugar de estacionamiento");
+
+        jLabel2.setText("Caracteristicas");
+
+        jLabel5.setText("Libre");
+
+        jLabel6.setText("Ocupado");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/azulH.png"))); // NOI18N
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/rojoH.png"))); // NOI18N
+
+        panelParqueo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelParqueo.setLayout(new java.awt.GridLayout(5, 0));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton1.setText("1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton1);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton2.setText("2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton2);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton3.setText("3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton3);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton4.setText("4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton4);
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton5.setText("5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton5);
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton6.setText("6");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton6);
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton7.setText("7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton7);
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton8.setText("8");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton8);
+
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton9.setText("9");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton9);
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton10.setText("10");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton10);
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton11.setText("11");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton11);
+
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton12.setText("12");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton12);
+
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton13.setText("13");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton13);
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton14.setText("14");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton14);
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton15.setText("15");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton15);
+
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton16.setText("16");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton16);
+
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton17.setText("17");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton17);
+
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton18.setText("18");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton18);
+
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton19.setText("19");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton19);
+
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton20.setText("20");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton20);
+
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton21.setText("21");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton21);
+
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton22.setText("22");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton22);
+
+        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton23.setText("23");
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton23);
+
+        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton24.setText("24");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton24);
+
+        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton25.setText("25");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton25);
+
+        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton26.setText("26");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton26);
+
+        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton27.setText("27");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton27);
+
+        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton28.setText("28");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton28);
+
+        jButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton29.setText("29");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton29);
+
+        jButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton30.setText("30");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton30);
+
+        jButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton31.setText("31");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton31);
+
+        jButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton32.setText("32");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton32);
+
+        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton33.setText("33");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton33ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton33);
+
+        jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton34.setText("34");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton34);
+
+        jButton35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton35.setText("35");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton35);
+
+        jButton36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton36.setText("36");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton36);
+
+        jButton37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton37.setText("37");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton37);
+
+        jButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton38.setText("38");
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton38);
+
+        jButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton39.setText("39");
+        jButton39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton39ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton39);
+
+        jButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/azulV.png"))); // NOI18N
+        jButton40.setText("40");
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton40ActionPerformed(evt);
+            }
+        });
+        panelParqueo.add(jButton40);
+
+        jScrollPane1.setViewportView(panelParqueo);
+
+        cbxTipoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- Elija tipo de contrato ---", "Por horas", "Por dia", "Por semana", "Por mes" }));
+
+        jLabel8.setText("Placa");
+
+        jLabel9.setText("Modelo");
+
+        jLabel10.setText("Color");
+
+        btnGenerar.setText("Generar ticket");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Lugar de estacionamiento");
+
+        jScrollPane2.setViewportView(txtLugar);
+
+        jLabel11.setText("Elija tipo");
+
+        jLabel12.setText("Tarifas");
+
+        jLabel13.setText("Por hora");
+
+        jLabel14.setText("Por Dia");
+
+        jLabel15.setText("Por Semana");
+
+        jLabel16.setText("Por mes");
+
+        jLabel17.setText("$0.50");
+
+        jLabel18.setText("$10");
+
+        jLabel19.setText("$60");
+
+        jLabel21.setText("$210");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbxTipoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(btnGenerar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCancelar)
+                                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel6)))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel17))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel14)
+                                                    .addComponent(jLabel15)
+                                                    .addComponent(jLabel16))
+                                                .addGap(56, 56, 56)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel19)
+                                                    .addComponent(jLabel21))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel18)))
+                        .addGap(38, 38, 38)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel12))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel17))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel6)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel19))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel11)
+                                            .addComponent(cbxTipoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnGenerar)
+                                    .addComponent(btnCancelar)))
+                            .addComponent(jLabel21))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton1.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton2.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton3.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton4.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton5.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton6.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton7.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton7ActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton8.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton8ActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton9.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton9ActionPerformed
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton10.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton10ActionPerformed
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton11.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton11ActionPerformed
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton12.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton12ActionPerformed
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton13.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton13ActionPerformed
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton14.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton14ActionPerformed
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton15.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton15ActionPerformed
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton16.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton16ActionPerformed
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton17.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton17ActionPerformed
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton18.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton18ActionPerformed
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton19.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton19ActionPerformed
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // TODO add your handling code here:
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton20.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton20ActionPerformed
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton21.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton21ActionPerformed
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton22.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton22ActionPerformed
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // TODO add your handling code here:
+        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton23.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton23ActionPerformed
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton24.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton24ActionPerformed
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        // TODO add your handling code here:
+        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton25.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton25ActionPerformed
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton26.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton26ActionPerformed
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        // TODO add your handling code here:
+        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton27.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton27ActionPerformed
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton28.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton28ActionPerformed
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        // TODO add your handling code here:
+        jButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton29.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton29ActionPerformed
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        // TODO add your handling code here:
+        jButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton30.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton30ActionPerformed
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        // TODO add your handling code here:
+        jButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton31.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton31ActionPerformed
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        // TODO add your handling code here:
+        jButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton32.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton32ActionPerformed
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        // TODO add your handling code here:
+        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton33.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton33ActionPerformed
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        // TODO add your handling code here:
+        jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton34.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton34ActionPerformed
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        // TODO add your handling code here:
+        jButton35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton35.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton35ActionPerformed
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        // TODO add your handling code here:
+        jButton36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton36.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton36ActionPerformed
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        // TODO add your handling code here:
+        jButton37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton37.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton37ActionPerformed
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        // TODO add your handling code here:
+        jButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton38.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton38ActionPerformed
+    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+        // TODO add your handling code here:
+        jButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton39.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton39ActionPerformed
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        // TODO add your handling code here:
+        jButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/vista/rojoV.png")));
+        String text = jButton40.getText();
+        txtLugar.setText(text);
+        cantidadLibres--;
+        cantidadOcupados++;
+        mostrarGrafica();
+        panelParqueo.setVisible(false);
+    }//GEN-LAST:event_jButton40ActionPerformed
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here:
+        cantidadLibres = ctrlAdmin.obtenerSesion().getLugares();
+        mostrarGrafica();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        // TODO add your handling code here:
+        int cbx = cbxTipoC.getSelectedIndex();
+        String lugar = txtLugar.getText();
+        String placa = txtPlaca.getText();
+        String modelo = txtModelo.getText();
+        String color = txtColor.getText();
+        if (cbx > 0 && !lugar.isBlank() && !placa.isBlank() && !modelo.isBlank() && !color.isBlank()) {
+            ctrlAdmin.obtenerSesion().setLugares(cantidadLibres);
+            var nuevo = ctrlAdmin.obtenerSesion();
+            ctrlAdmin.actualizar(new Admin(cantidadLibres, cantidadOcupados, modelo, color, modelo, color, color, color));
+            var auto = new Automovil(placa, modelo, color);
+            ctrlAuto.create(auto);
+            ctrlUsuario.obtenerSesion().create(auto);
+            JOptionPane.showMessageDialog(this, "Generado Ticket");
+            this.dispose();
+            vntPrincipal.getDesktopPane().add(vntTicket); 
+            vntTicket.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Hay campos en blanco");
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    public void mostrarGrafica() {
+        try {
+            categoria.setValue(cantidadLibres, "Puestos Libres", "");
+            categoria.setValue(cantidadOcupados, "Puestos Ocupados", "");
+            Cf.setSize(800, 400);
+            Cf.setLocationRelativeTo(null);
+            Cf.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("error: ");
+            e.printStackTrace();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGenerar;
+    private javax.swing.JComboBox<String> cbxTipoC;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton30;
+    private javax.swing.JButton jButton31;
+    private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
+    private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
+    private javax.swing.JButton jButton39;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel panelParqueo;
+    private javax.swing.JTextField txtColor;
+    private javax.swing.JTextPane txtLugar;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

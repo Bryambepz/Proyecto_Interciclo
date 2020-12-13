@@ -6,34 +6,54 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author braya
  */
 public class Admin extends Usuario implements Serializable{
-    private int lugares;
-
+    private int lugaresDisponibles;
+    private int lugaresOcupados;
+    private List<Usuario> listaUsuarios;
+            
     public Admin() {
+        this.listaUsuarios = new ArrayList<>();
+        this.lugaresDisponibles = 40;
+        this.lugaresOcupados = 0;
     }
 
-    public Admin(int lugares, String cedula, String nombre, String apellido, String correo, String cotrasenia) {
-        super(cedula, nombre, apellido, correo, cotrasenia);
-        this.lugares = lugares;
+    public Admin(int lugaresDisponibles, int lugaresOcupados, String cedula, String nombre, String apellido, String telefono, String correo, String cotrasenia) {
+        super(cedula, nombre, apellido, telefono, correo, cotrasenia);
+        this.listaUsuarios = new ArrayList<>();
+        this.lugaresDisponibles = 40;
+        this.lugaresOcupados = 0;
     }
-    
+
     public int getLugares() {
-        return lugares;
+        return lugaresDisponibles;
     }
 
     public void setLugares(int lugares) {
-        this.lugares = lugares;
+        this.lugaresDisponibles = lugares;
     }
 
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+    
+    public boolean create(Usuario usuario){
+        return listaUsuarios.add(usuario);
+    }
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + this.lugares;
+        hash = 71 * hash + this.lugaresDisponibles;
         return hash;
     }
 
@@ -49,12 +69,12 @@ public class Admin extends Usuario implements Serializable{
             return false;
         }
         final Admin other = (Admin) obj;
-        return this.lugares == other.lugares;
+        return this.lugaresDisponibles == other.lugaresDisponibles;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\n---> Admin ---> " + "lugares=" + lugares + '}';
+        return super.toString() + "\n---> Admin ---> " + "lugares=" + lugaresDisponibles + '}';
     }
     
 }

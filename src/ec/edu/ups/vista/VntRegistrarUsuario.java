@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorAdmin;
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.modelo.Usuario;
 import java.io.IOException;
@@ -20,13 +21,18 @@ import javax.swing.JOptionPane;
  */
 public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
     private ControladorUsuario ctrlUsuario;
-    public static String ruta = "C:\\Users\\braya\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto_Interciclo\\registrarUsuario";
+    private ControladorAdmin ctrlAdmin; 
+    public static String ruta = "C:\\Users\\braya\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto_Interciclo\\registrarAdmin";
+    public static String ruta2 = "C:\\Users\\braya\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto_Interciclo\\registrarUsuario";
     /**
      * Creates new form VntRegistrarUsuario
+     * @param ctrlUsuario
+     * @param ctrlAdmin
      */
-    public VntRegistrarUsuario(ControladorUsuario ctrlUsuario) {
+    public VntRegistrarUsuario(ControladorUsuario ctrlUsuario, ControladorAdmin ctrlAdmin) {
         initComponents();
         this.ctrlUsuario = ctrlUsuario;
+        this.ctrlAdmin = ctrlAdmin;
     }
 
     /**
@@ -55,9 +61,15 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
 
+        setClosable(true);
         setTitle("Registrar");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/register.png"))); // NOI18N
 
-        cbxTipoTelf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "*** Elija tipo ***", "Casa", "Movil", " " }));
+        txtNombre.setText("2");
+
+        txtApellidp.setText("2");
+
+        cbxTipoTelf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "*** Elija tipo ***", "Casa", "Movil" }));
         cbxTipoTelf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTipoTelfActionPerformed(evt);
@@ -68,9 +80,11 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nombre");
 
-        txtCorreo.setText("usuario123@gmail.com");
+        txtCorreo.setText("user@gmail.com");
 
         jLabel3.setText("Apellido");
+
+        txtContrasenia.setText("2");
 
         jLabel4.setText("Correo");
 
@@ -101,9 +115,15 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(btnRegistrar)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnCancelar)
+                        .addGap(54, 54, 54))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,28 +133,22 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel4))
                                 .addGap(72, 72, 72)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContrasenia)
-                                    .addComponent(txtTelefono)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                                     .addComponent(cbxTipoTelf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnRegistrar)
-                                .addGap(32, 32, 32)
-                                .addComponent(btnCancelar)
-                                .addGap(63, 63, 63)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(138, 138, 138)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(txtNombre)
-                            .addComponent(txtApellidp))
-                        .addGap(15, 15, 15))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(138, 138, 138)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                    .addComponent(txtNombre)
+                                    .addComponent(txtApellidp))))))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +185,7 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnCancelar))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -202,13 +216,15 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
             || telefono.isBlank() || correo.isBlank() || contrasenia.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Existen campos en blanco");
         } else {
-            if (ctrlUsuario.comprobarDatos(correo, cedula)) {
+            if (ctrlUsuario.comprobarDatos(correo, cedula) && ctrlAdmin.comprobarDatosAdmin(correo, cedula)) {
                 if (telefono(telefono) && cedula(cedula) && correoC(correo)) {
                     try {
-                        var usuario = new Usuario(cedula, nombre, apellido, correo, contrasenia);
+                        var usuario = new Usuario(cedula, nombre, apellido, telefono, correo, contrasenia);
                         ctrlUsuario.create(usuario);
                         System.out.println("---> " + usuario);
-                        ctrlUsuario.guardarDatos(ruta);
+                        ctrlAdmin.obtenerSesion().create(usuario);
+                        ctrlUsuario.guardarDatos(ruta2);
+                        ctrlAdmin.guardarDatos(ruta);
                         JOptionPane.showMessageDialog(this, "Registrado Correctamente");
                         this.dispose();
                     } catch (IOException ex) {

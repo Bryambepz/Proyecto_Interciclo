@@ -21,11 +21,24 @@ public class Usuario extends Persona implements Serializable{
     public Usuario() {
         this.listaAutomoviles = new ArrayList<>();
     }
+
+    public Usuario(String cedula, String nombre, String apellido, String telefono, String correo, String cotrasenia) {
+        super(cedula, nombre, apellido, telefono, correo, cotrasenia);
+        this.listaAutomoviles = new ArrayList<>();
+    }
     
-    public Usuario(String cedula, String nombre, String apellido, String correo, String cotrasenia) {
-        super(cedula, nombre, apellido, correo, cotrasenia);
+    public List<Automovil> getListaAutomoviles() {
+        return listaAutomoviles;
     }
 
+    public void setListaAutomoviles(List<Automovil> listaAutomoviles) {
+        this.listaAutomoviles = listaAutomoviles;
+    }
+    
+    public boolean create(Automovil auto){
+        return listaAutomoviles.add(auto);
+    }
+    
     @Override
     public String toString() {
         return super.toString() + "\n---> Usuario ---> " + "listaAutomoviles=" + listaAutomoviles + '}';

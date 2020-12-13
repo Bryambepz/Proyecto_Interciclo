@@ -16,17 +16,26 @@ public abstract class Persona implements Serializable{
     private String cedula;
     private String nombre;
     private String apellido;
+    private String telefono;
     private String correo;
     private String cotrasenia;
 
-    public Persona(String cedula, String nombre, String apellido, String correo, String cotrasenia) {
+    public Persona(String cedula, String nombre, String apellido, String telefono, String correo, String cotrasenia) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.cotrasenia = cotrasenia;
+        this.telefono = telefono;
     }
 
+    public Persona(String cedula, String nombre, String apellido, String telefono) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
+    }
+    
     public Persona() {
     }
     
@@ -54,6 +63,14 @@ public abstract class Persona implements Serializable{
         this.apellido = apellido;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
     public String getCorreo() {
         return correo;
     }
@@ -101,7 +118,7 @@ public abstract class Persona implements Serializable{
 
     @Override
     public String toString() {
-        return "Persona ---> " + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", cotrasenia=" + cotrasenia + '}';
+        return "Persona ---> " + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono " + telefono + ", correo=" + correo + ", cotrasenia=" + cotrasenia + '}';
     }
     
 }

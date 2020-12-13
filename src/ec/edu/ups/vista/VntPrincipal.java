@@ -6,19 +6,23 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorAdmin;
+import ec.edu.ups.controlador.ControladorAutomovil;
+import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorUsuario;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 /**
  *
  * @author braya
  */
-public final class VntPrincipal extends javax.swing.JFrame {
-    public static String ruta = "C:\\Users\\braya\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto_Interciclo\\registrarUsuario";
-    //
+public class VntPrincipal extends javax.swing.JFrame {
     private ControladorUsuario ctrlUsuario;
     private ControladorAdmin ctrlAdmin;
+    private ControladorAutomovil ctrlAuto;
+    private ControladorTicket ctrlTicket;
     //
     private VntRegistrarAdmin vntRegistrarAdmin;
     private VntRegistrarUsuario vntRegistarUsuario;
@@ -26,33 +30,50 @@ public final class VntPrincipal extends javax.swing.JFrame {
     private VntListarEstacionamientosOcupados vntListar;
     private VntReservar vntReservar;
     private VntRetirar vntRetirar;
+    private VntTicket vntTicket;
     /**
-     * Creates new form VntPrincipal
+     * Creates new form a
      */
     public VntPrincipal() {
         initComponents();
         //
         ctrlUsuario = ControladorUsuario.getInstancia();
         ctrlAdmin = ControladorAdmin.getInstancia();
+        ctrlAuto = new ControladorAutomovil();
+        ctrlTicket = new ControladorTicket();
         //
         vntRegistrarAdmin = new VntRegistrarAdmin(ctrlUsuario, ctrlAdmin, this);
-        vntRegistarUsuario = new VntRegistrarUsuario(ctrlUsuario);
+        vntRegistarUsuario = new VntRegistrarUsuario(ctrlUsuario, ctrlAdmin);
         vntIniciar = new VntIniciarsesion(ctrlUsuario, ctrlAdmin, this);
         vntListar = new VntListarEstacionamientosOcupados(ctrlAdmin, this);
-        vntReservar = new VntReservar(ctrlUsuario, this);
+        vntReservar = new VntReservar(ctrlAdmin, ctrlUsuario, ctrlAuto, ctrlTicket, this, vntTicket);
         vntRetirar = new VntRetirar(ctrlAdmin, this);
+        vntTicket = new VntTicket(ctrlAdmin, ctrlUsuario, ctrlAuto, ctrlTicket, vntReservar);
         //
-        getListarMenuItem().setVisible(false);
-        getReservarMenuItem().setVisible(false);
-        getRetirarMenuItem().setVisible(false);
+        gestionMenu.setVisible(false);
+        registarUMenuItem.setVisible(false);
+        listarMenuItem.setVisible(false);
+        reservarMenuItem.setVisible(false);
+        retirarMenuItem.setVisible(false);
+//        this.setExtendedState(MAXIMIZED_HORIZ);
+//        this.setExtendedState(MAXIMIZED_VERT);
+//        generarMenu1.setVisible(false);
     }
 
-    public JMenuItem getRegistrarAdminMenuItem() {
+    public JDesktopPane getDesktopPane() {
+        return desktopPane;
+    }
+
+    public JMenu getGestionMenu() {
+        return gestionMenu;
+    }
+
+    public JMenuItem getRegistarUMenuItem() {
+        return registarUMenuItem;
+    }
+
+    public JMenuItem getRegistrarAdminMenuvnttItem() {
         return registrarAdminMenuItem;
-    }
-
-    public JMenuItem getListarMenuItem() {
-        return listarMenuItem;
     }
 
     public JMenuItem getReservarMenuItem() {
@@ -62,6 +83,18 @@ public final class VntPrincipal extends javax.swing.JFrame {
     public JMenuItem getRetirarMenuItem() {
         return retirarMenuItem;
     }
+
+    public JMenuItem getListarMenuItem() {
+        return listarMenuItem;
+    }
+
+    public VntTicket getVntTicket() {
+        return vntTicket;
+    }
+
+//    public JMenu getGenerarMenu1() {
+//        return generarMenu1;
+//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,26 +106,31 @@ public final class VntPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
         registrarAdminMenuItem = new javax.swing.JMenuItem();
         registarUMenuItem = new javax.swing.JMenuItem();
         iniciarSesionMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
+        cerrarMenuItem = new javax.swing.JMenuItem();
         gestionMenu = new javax.swing.JMenu();
         listarMenuItem = new javax.swing.JMenuItem();
         reservarMenuItem = new javax.swing.JMenuItem();
         retirarMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/fondo_.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        desktopPane.add(jLabel1);
+        jLabel1.setBounds(0, 0, 840, 850);
+
+        Menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/menu.png"))); // NOI18N
         Menu.setMnemonic('f');
         Menu.setText("Menu");
 
+        registrarAdminMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        registrarAdminMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/register.png"))); // NOI18N
         registrarAdminMenuItem.setMnemonic('o');
         registrarAdminMenuItem.setText("Registrar Admin");
         registrarAdminMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +140,8 @@ public final class VntPrincipal extends javax.swing.JFrame {
         });
         Menu.add(registrarAdminMenuItem);
 
+        registarUMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        registarUMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/register.png"))); // NOI18N
         registarUMenuItem.setMnemonic('s');
         registarUMenuItem.setText("Registrar Usuario");
         registarUMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +151,8 @@ public final class VntPrincipal extends javax.swing.JFrame {
         });
         Menu.add(registarUMenuItem);
 
+        iniciarSesionMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        iniciarSesionMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/loguin.png"))); // NOI18N
         iniciarSesionMenuItem.setMnemonic('a');
         iniciarSesionMenuItem.setText("Iniciar Sesion");
         iniciarSesionMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -120,20 +162,25 @@ public final class VntPrincipal extends javax.swing.JFrame {
         });
         Menu.add(iniciarSesionMenuItem);
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        cerrarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        cerrarMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/logout.png"))); // NOI18N
+        cerrarMenuItem.setMnemonic('x');
+        cerrarMenuItem.setText("Cerrar Sesion");
+        cerrarMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+                cerrarMenuItemActionPerformed(evt);
             }
         });
-        Menu.add(exitMenuItem);
+        Menu.add(cerrarMenuItem);
 
         menuBar.add(Menu);
 
+        gestionMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/gestion.png"))); // NOI18N
         gestionMenu.setMnemonic('e');
         gestionMenu.setText("Gestion");
 
+        listarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        listarMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/listar.png"))); // NOI18N
         listarMenuItem.setMnemonic('t');
         listarMenuItem.setText("Listar  Contratos");
         listarMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -143,32 +190,29 @@ public final class VntPrincipal extends javax.swing.JFrame {
         });
         gestionMenu.add(listarMenuItem);
 
+        reservarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        reservarMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/klipartz.com.png"))); // NOI18N
         reservarMenuItem.setMnemonic('y');
         reservarMenuItem.setText("Reservar");
+        reservarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservarMenuItemActionPerformed(evt);
+            }
+        });
         gestionMenu.add(reservarMenuItem);
 
+        retirarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        retirarMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/klipartz.com.png"))); // NOI18N
         retirarMenuItem.setMnemonic('p');
         retirarMenuItem.setText("Retirar");
+        retirarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retirarMenuItemActionPerformed(evt);
+            }
+        });
         gestionMenu.add(retirarMenuItem);
 
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        gestionMenu.add(deleteMenuItem);
-
         menuBar.add(gestionMenu);
-
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
-
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
-
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
-
-        menuBar.add(helpMenu);
 
         setJMenuBar(menuBar);
 
@@ -178,20 +222,31 @@ public final class VntPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    private void listarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMenuItemActionPerformed
+        // TODO add your handling code here:
+        abrir(vntListar);
+    }//GEN-LAST:event_listarMenuItemActionPerformed
+
+    private void reservarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarMenuItemActionPerformed
+        // TODO add your handling code here:
+        abrir(vntReservar);
+    }//GEN-LAST:event_reservarMenuItemActionPerformed
+
+    private void retirarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retirarMenuItemActionPerformed
+        // TODO add your handling code here:
+        abrir(vntRetirar);
+    }//GEN-LAST:event_retirarMenuItemActionPerformed
 
     private void registrarAdminMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarAdminMenuItemActionPerformed
         // TODO add your handling code here:
@@ -208,16 +263,18 @@ public final class VntPrincipal extends javax.swing.JFrame {
         abrir(vntIniciar);
     }//GEN-LAST:event_iniciarSesionMenuItemActionPerformed
 
-    private void listarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarMenuItemActionPerformed
-        // TODO add your handling code here:
-        abrir(vntListar);
-    }//GEN-LAST:event_listarMenuItemActionPerformed
-
+    private void cerrarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarMenuItemActionPerformed
+        listarMenuItem.setVisible(false);
+        reservarMenuItem.setVisible(false);
+        retirarMenuItem.setVisible(false);
+        gestionMenu.setVisible(false);
+    }//GEN-LAST:event_cerrarMenuItemActionPerformed
+    
     public void abrir(JInternalFrame frame) {
         desktopPane.add(frame);
         frame.setVisible(true);
     }
-
+    
     /**
      * @param args the command line arguments
      */
@@ -244,6 +301,7 @@ public final class VntPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VntPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -255,14 +313,11 @@ public final class VntPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Menu;
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JMenuItem cerrarMenuItem;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu gestionMenu;
-    private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem iniciarSesionMenuItem;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem listarMenuItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem registarUMenuItem;

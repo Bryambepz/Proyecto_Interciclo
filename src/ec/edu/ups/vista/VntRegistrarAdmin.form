@@ -8,6 +8,10 @@
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Registrar"/>
+    <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+      <Image iconType="3" name="/ec/edu/ups/imagenes/register.png"/>
+    </Property>
+    <Property name="icon" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -31,9 +35,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                      <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -42,48 +53,31 @@
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCorreo" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtContrasenia" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbxTipoTelf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtCorreo" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtTelefono" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="cbxTipoTelf" pref="154" max="32767" attributes="0"/>
+                                  <Component id="txtContrasenia" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="61" max="-2" attributes="0"/>
-                              <Component id="btnRegistrar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="txtNumero" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCedula" pref="150" max="32767" attributes="0"/>
-                                  <Component id="txtNombre" max="32767" attributes="0"/>
-                                  <Component id="txtApellidp" max="32767" attributes="0"/>
+                              <EmptySpace pref="149" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtApellidp" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtNombre" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtCedula" alignment="1" pref="150" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,12 +99,7 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtApellidp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbxTipoTelf" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -135,7 +124,7 @@
                   <Component id="btnRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -182,17 +171,22 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellidp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbxTipoTelf">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="*** Elija tipo ***"/>
             <StringItem index="1" value="Casa"/>
             <StringItem index="2" value="Movil"/>
-            <StringItem index="3" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -207,10 +201,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorreo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="usuario123@gmail.com"/>
+        <Property name="text" type="java.lang.String" value="admin@gmail.com"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtContrasenia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnRegistrar">
       <Properties>
@@ -227,13 +224,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Numero de estacionamientos"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNumero">
     </Component>
   </SubComponents>
 </Form>

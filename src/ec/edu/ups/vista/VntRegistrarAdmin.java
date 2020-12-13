@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
 
     private ControladorAdmin ctrlAdmin;
-    private ControladorUsuario ctrlUsuario; 
+    private ControladorUsuario ctrlUsuario;
     private VntPrincipal vntPrincipal;
 
     public static String ruta = "C:\\Users\\braya\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto_Interciclo\\registrarAdmin";
@@ -66,11 +66,10 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
         txtContrasenia = new javax.swing.JPasswordField();
         btnRegistrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Registrar");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/register.png"))); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -105,14 +104,20 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
 
         txtCedula.setText("0101010101");
 
-        cbxTipoTelf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "*** Elija tipo ***", "Casa", "Movil", " " }));
+        txtNombre.setText("1");
+
+        txtApellidp.setText("1");
+
+        cbxTipoTelf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "*** Elija tipo ***", "Casa", "Movil" }));
         cbxTipoTelf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTipoTelfActionPerformed(evt);
             }
         });
 
-        txtCorreo.setText("usuario123@gmail.com");
+        txtCorreo.setText("admin@gmail.com");
+
+        txtContrasenia.setText("1");
 
         btnRegistrar.setText("REGISTRAR");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,16 +133,20 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel8.setText("Numero de estacionamientos");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(btnRegistrar)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnCancelar)
+                        .addGap(63, 63, 63))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,36 +154,23 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4))
-                                .addGap(72, 72, 72)
+                                .addGap(81, 81, 81)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtContrasenia)
-                                    .addComponent(txtTelefono)
-                                    .addComponent(cbxTipoTelf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbxTipoTelf, 0, 154, Short.MAX_VALUE)
+                                    .addComponent(txtContrasenia)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnRegistrar)
-                                .addGap(32, 32, 32)
-                                .addComponent(btnCancelar)
-                                .addGap(63, 63, 63)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(28, 28, 28)
-                                .addComponent(txtNumero))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2))
-                                .addGap(138, 138, 138)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(txtNombre)
-                                    .addComponent(txtApellidp))))
-                        .addGap(15, 15, 15))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtApellidp, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,10 +187,6 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtApellidp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -215,7 +207,7 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnCancelar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,7 +222,6 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
         String cedula = txtCedula.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellidp.getText();
-        int lugares = Integer.valueOf(txtNumero.getText());
         int opcion = cbxTipoTelf.getSelectedIndex();
         String telefono = txtTelefono.getText();
         String correo = txtCorreo.getText();
@@ -242,9 +233,9 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
         } else {
             System.out.println("---? " + ctrlAdmin.comprobarDatosAdmin(correo, cedula));
             if (ctrlAdmin.comprobarDatosAdmin(correo, cedula) && ctrlUsuario.comprobarDatos(correo, cedula)) {
-                if (telefono(telefono) && cedula(cedula) && correoC(correo) && lugares >= 9) {
+                if (telefono(telefono) && cedula(cedula) && correoC(correo)) {
                     try {
-                        var admin = new Admin(lugares, cedula, nombre, apellido, correo, contrasenia);
+                        var admin = new Admin(40, 0, cedula, nombre, apellido, telefono, correo, contrasenia);
                         ctrlAdmin.create(admin);
                         System.out.println("---> " + admin);
                         ctrlAdmin.guardarDatos(ruta);
@@ -253,14 +244,9 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
                     }
                     JOptionPane.showMessageDialog(this, "Registrado Correctamente");
                     this.dispose();
-                    vntPrincipal.getRegistrarAdminMenuItem().setVisible(false);
+                    vntPrincipal.getRegistrarAdminMenuvnttItem().setVisible(false);
                 } else {
-                    if (lugares < 9) {
-                        JOptionPane.showMessageDialog(this, "Hay pocos lugares de estacionamientos, \n"
-                                + "Ingrese numero mayor a 9");
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Existen datos incorrectos");
-                    }
+                    JOptionPane.showMessageDialog(this, "Existen datos incorrectos");
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Hay datos que ya se han registrados anteriormente");
@@ -334,14 +320,12 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtApellidp;
     private javax.swing.JTextField txtApellidp1;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

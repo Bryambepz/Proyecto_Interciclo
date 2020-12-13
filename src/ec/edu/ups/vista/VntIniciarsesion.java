@@ -48,7 +48,9 @@ public class VntIniciarsesion extends javax.swing.JInternalFrame {
         btnIniciar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Inciar Sesion");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/loguin.png"))); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -79,27 +81,33 @@ public class VntIniciarsesion extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(txtContrasenia))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(btnIniciar)
-                .addGap(38, 38, 38)
-                .addComponent(btnCancelar)
-                .addGap(81, 81, 81))
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar)))
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,11 +120,11 @@ public class VntIniciarsesion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIniciar)
                     .addComponent(btnCancelar))
-                .addGap(51, 51, 51))
+                .addGap(62, 62, 62))
         );
 
         pack();
@@ -130,11 +138,21 @@ public class VntIniciarsesion extends javax.swing.JInternalFrame {
         System.out.println("---> " + ctrlAdmin.iniciarSesion(correo, contrasenia));
         if (ctrlAdmin.iniciarSesion(correo, contrasenia)) {
             JOptionPane.showMessageDialog(this, "Bienvenido Administrador" + "\nIniciado correctamente");
+            System.out.println("adminIn --> " + ctrlAdmin.obtenerSesion());
             vntPrincipal.getListarMenuItem().setVisible(true);
+            vntPrincipal.getRegistarUMenuItem().setVisible(true);
+            vntPrincipal.getGestionMenu().setVisible(true);
+            JOptionPane.showMessageDialog(this, "Ya pueden registrarse los usuarios "
+                    + "\n Puede cerrar sesion o verificar la lista de los autos registrados");
+            this.dispose();
+            
         }else if (ctrlUsuario.iniciarSesion(correo, contrasenia)) {
             JOptionPane.showMessageDialog(this, "Bienvenido" + "\nIniciado correctamente");
+            vntPrincipal.getListarMenuItem().setVisible(false);
+            vntPrincipal.getGestionMenu().setVisible(true);
             vntPrincipal.getReservarMenuItem().setVisible(true);
             vntPrincipal.getRetirarMenuItem().setVisible(true);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Datos incorrectos");
             txtContrasenia.setText("");
@@ -147,6 +165,10 @@ public class VntIniciarsesion extends javax.swing.JInternalFrame {
 //        System.out.println(ctrlAdmin.getListaObjetos());
 //        dib();
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 //    public void dib(){
 //        Graphics g = null;
