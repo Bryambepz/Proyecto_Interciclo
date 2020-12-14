@@ -5,8 +5,12 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorAutomovil;
+import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.modelo.Automovil;
+import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Usuario;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -19,16 +23,24 @@ import javax.swing.JOptionPane;
 public class VntRetirar extends javax.swing.JInternalFrame {
 
     private ControladorUsuario ctrlUsuario;
+    private ControladorTicket ctrlTicket;
+    private ControladorAutomovil ctrlAuto;
     private VntPrincipal vntPrincipal;
     private LocalDateTime horaSalida;
     private Date FechaSalida;
 
     /**
      * Creates new form VntRetirar
+     *
+     * @param ctrlUsuario
+     * @param vntPrincipal
+     * @param ctrlTicket
      */
-    public VntRetirar(ControladorUsuario ctrlUsuario, VntPrincipal vntPrincipal) {
+    public VntRetirar(ControladorUsuario ctrlUsuario, ControladorAutomovil ctrlAuto, VntPrincipal vntPrincipal, ControladorTicket ctrlTicket) {
         initComponents();
         this.ctrlUsuario = ctrlUsuario;
+        this.ctrlTicket = ctrlTicket;
+        this.ctrlAuto = ctrlAuto;
         this.vntPrincipal = vntPrincipal;
 
     }
@@ -76,6 +88,23 @@ public class VntRetirar extends javax.swing.JInternalFrame {
 
         setTitle("Retirar");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/klipartz.com.png"))); // NOI18N
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel1.setText("Ingrese Id");
 
@@ -259,7 +288,7 @@ public class VntRetirar extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Ingrese dato");
         } else {
             var ticket = ctrlUsuario.obtenerSesion().buscar(Integer.valueOf(txtId.getText()));
-            
+
             if (ticket != null) {
                 var datosUsuarioT = ticket.getTicket();
                 txtCedula.setText(datosUsuarioT.getCedula());
@@ -270,11 +299,14 @@ public class VntRetirar extends javax.swing.JInternalFrame {
                 txtPlaca.setText(ticket.getPlaca());
                 txtModelo.setText(ticket.getModelo());
                 txtColor.setText(ticket.getColor());
+
                 horaSalida = LocalDateTime.now();
                 FechaSalida = java.sql.Timestamp.valueOf(horaSalida);
-                txtFechaSalida.setText(FechaSalida.toString());
+                txtFechaSalida.setText(horaSalida.toString());
+
                 txtFechaI.setText(ticket.getTicket().getFechaIngreso().toString());
                 txtTipoC.setText(datosUsuarioT.getTipoContrato());
+                txtTotalPagar.setText(String.valueOf(ctrlTicket.total(txtTipoC.getText(), ticket.getTicket().getFechaIngreso(), horaSalida)));
                 bntFactura.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Ingrese id valido");
@@ -285,10 +317,41 @@ public class VntRetirar extends javax.swing.JInternalFrame {
     private void bntFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFacturaActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Imprimiendo Factura");
-        var id = ctrlUsuario.obtenerSesion().actualizar(Integer.valueOf(txtId.getText()));
-        id.getTicket().setFechaSalida(LocalDateTime.parse(txtFechaSalida.getText(), DateTimeFormatter.ISO_DATE_TIME));
+        int id = Integer.valueOf(txtId.getText());
+        int lugar = Integer.valueOf(txtNumero.getText());
+        String fechS = txtFechaSalida.getText();
+        String fechaI = txtFechaI.getText();
+//        DateTimeFormatter salida = DateTimeFormatter.ofPattern("aaaa-MM-dd HH:mm");
+        LocalDateTime fI = LocalDateTime.parse(fechaI);
+        LocalDateTime fS = LocalDateTime.parse(fechS);
+        String con = txtTipoC.getText();
+//        var ticketb = ctrlUsuario.obtenerSesion().buscar(Integer.valueOf(txtId.getText()));
 
+        var ticket = new Ticket(id, lugar, fI, fS, con);
+        var nAuto = new Automovil(txtPlaca.getText(), txtModelo.getText(), txtColor.getText(), ticket);
+        ctrlTicket.actualizar(Integer.valueOf(txtId.getText()), ticket);
+        ctrlAuto.actualizar(Integer.valueOf(txtId.getText()), nAuto);
+        ctrlUsuario.obtenerSesion().actualizar(id, nAuto);
+        System.out.println("*-*-* > " + ctrlTicket.actualizar(Integer.valueOf(txtId.getText()), ticket));
+        this.dispose();
     }//GEN-LAST:event_bntFacturaActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here:
+        txtId.setText("");
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtTelefono.setText("");
+        txtNumero.setText("");
+        txtPlaca.setText("");
+        txtModelo.setText("");
+        txtColor.setText("");
+        txtFechaI.setText("");
+        txtFechaSalida.setText("");
+        txtTotalPagar.setText("");
+        txtTipoC.setText("");
+    }//GEN-LAST:event_formInternalFrameActivated
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

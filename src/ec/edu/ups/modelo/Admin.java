@@ -19,16 +19,16 @@ public class Admin extends Usuario implements Serializable{
     private List<Usuario> listaUsuarios;
             
     public Admin() {
-        this.listaUsuarios = new ArrayList<>();
         this.lugaresDisponibles = 40;
         this.lugaresOcupados = 0;
+        this.listaUsuarios = new ArrayList<>();
     }
 
     public Admin(int lugaresDisponibles, int lugaresOcupados, String cedula, String nombre, String apellido, String telefono, String correo, String cotrasenia) {
         super(cedula, nombre, apellido, telefono, correo, cotrasenia);
-        this.listaUsuarios = new ArrayList<>();
         this.lugaresDisponibles = 40;
         this.lugaresOcupados = 0;
+        this.listaUsuarios = new ArrayList<>();
     }
 
     public int getLugares() {
@@ -50,6 +50,7 @@ public class Admin extends Usuario implements Serializable{
     public boolean create(Usuario usuario){
         return listaUsuarios.add(usuario);
     }
+    
     @Override
     public int hashCode() {
         int hash = 3;

@@ -324,7 +324,7 @@ public class VntTicket extends javax.swing.JInternalFrame {
         String modelo = txtModelo.getText();
         String color = txtColor.getText();
 
-        LocalDateTime hoaI = LocalDateTime.parse(txtFechaI.getText(), DateTimeFormatter.ISO_LOCAL_DATE);
+        LocalDateTime hoaI = LocalDateTime.parse(txtFechaI.getText(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         try {
             // TODO add your handling code here:

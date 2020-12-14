@@ -49,11 +49,11 @@ public class Usuario extends Persona implements Serializable{
         return null;
     }
     
-    public Automovil actualizar(int id){
+    public Automovil actualizar(int id, Automovil nAuto){
         for (int i = 0; i < listaAutomoviles.size(); i++) {
             Automovil auto = listaAutomoviles.get(i);
             if (auto.getTicket().getId() == id) {
-                return auto;
+                return listaAutomoviles.set(i, nAuto);
             }
         }
         return null;

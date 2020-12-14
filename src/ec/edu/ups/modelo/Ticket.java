@@ -30,6 +30,14 @@ public class Ticket extends Persona implements Serializable{
         this.fechaIngreso = fechaIngreso;
         this.tipoContrato = tipoContrato;
     }
+
+    public Ticket(int id, int lugar, LocalDateTime fechaIngreso, LocalDateTime fechaSalida, String tipoContrato) {
+        this.id = id;
+        this.lugar = lugar;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
+        this.tipoContrato = tipoContrato;
+    }
     
     public int getId() {
         return id;

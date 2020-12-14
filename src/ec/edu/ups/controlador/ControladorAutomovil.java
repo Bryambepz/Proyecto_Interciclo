@@ -17,5 +17,13 @@ public class ControladorAutomovil extends ControladorAbstracto<Automovil>{
         super();
     }
     
-    
+    public Automovil actualizar(int id, Automovil auto) {
+        for (int i = 0; i < getListaObjetos().size(); i++) {
+            var get = getListaObjetos().get(i);
+            if (id == get.getTicket().getId()) {
+                return getListaObjetos().set(id, auto);
+            }
+        }
+        return null;
+    }
 }

@@ -138,7 +138,7 @@ public class VntIniciarsesion extends javax.swing.JInternalFrame {
         System.out.println("---> " + ctrlAdmin.iniciarSesion(correo, contrasenia));
         if (ctrlAdmin.iniciarSesion(correo, contrasenia)) {
             JOptionPane.showMessageDialog(this, "Bienvenido Administrador" + "\nIniciado correctamente");
-            System.out.println("adminIn --> " + ctrlAdmin.obtenerSesion());
+            System.out.println("adminInLissussss --> " + ctrlUsuario.getListaObjetos());
             vntPrincipal.getListarMenuItem().setVisible(true);
             vntPrincipal.getRegistarUMenuItem().setVisible(true);
             vntPrincipal.getGestionMenu().setVisible(true);
@@ -162,19 +162,15 @@ public class VntIniciarsesion extends javax.swing.JInternalFrame {
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // TODO add your handling code here:
-//        System.out.println(ctrlAdmin.getListaObjetos());
-//        dib();
+        txtContrasenia.setText("");
+        txtCorreo.setText("");
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-//    public void dib(){
-//        Graphics g = null;
-//        super.paintComponent(g);
-//        g.drawRect(50, 50, 200, 200);
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIniciar;

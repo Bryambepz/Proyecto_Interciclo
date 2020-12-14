@@ -6,20 +6,37 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorAdmin;
+import ec.edu.ups.controlador.ControladorAutomovil;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Automovil;
+import ec.edu.ups.modelo.Ticket;
+//import ec.edu.ups.modelo.Admin;
+import ec.edu.ups.modelo.Usuario;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author braya
  */
 public class VntListarEstacionamientosOcupados extends javax.swing.JInternalFrame {
-    private ControladorAdmin ctrlAdmin;
+//    DefaultTableModel modelo;
+//    private ControladorAdmin ctrlAdmin;
+
+    private ControladorUsuario ctrlUsuario;
+    private ControladorAutomovil ctrlAuto;
+
     private VntPrincipal vntPrincipal;
+
     /**
      * Creates new form VntGestionarParqueadero
      */
-    public VntListarEstacionamientosOcupados(ControladorAdmin ctrlAdmin, VntPrincipal vntPrincipal) {
+    public VntListarEstacionamientosOcupados(ControladorUsuario ctrlUsuario, ControladorAutomovil ctrlAuto, VntPrincipal vntPrincipal) {
         initComponents();
-        this.ctrlAdmin = ctrlAdmin;
+        this.ctrlUsuario = ctrlUsuario;
+//        this.ctrlUsuario = ctrlUsuario;
+        this.ctrlAuto = ctrlAuto;
         this.vntPrincipal = vntPrincipal;
     }
 
@@ -34,9 +51,13 @@ public class VntListarEstacionamientosOcupados extends javax.swing.JInternalFram
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        btnListar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tablaContratos = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblTickets = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -51,65 +72,166 @@ public class VntListarEstacionamientosOcupados extends javax.swing.JInternalFram
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
         setClosable(true);
         setTitle("Listar");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/listar.png"))); // NOI18N
 
-        jButton1.setText("LISTAR CONTRATOS DEL PARQUEADERO");
+        btnListar.setText("LISTAR CONTRATOS DEL PARQUEADERO");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
-        tablaContratos.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Cedula", "Nombre", "Apellido", "Telefono", "Tipo Contrato", "Placa", "Modelo", "Color", "Fecha Ingreso", "Fecha Salida"
+                "Cedula", "Nombre", "Apellido", "Telefono", "Correo", "Contrasenia"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tablaContratos);
+        jScrollPane2.setViewportView(tblUsuarios);
+
+        tblTickets.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Lugar", "Tipo Contrato", "Placa", "Modelo", "Color", "Fecha Ingreso", "Fecha Salida"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tblTickets);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(517, Short.MAX_VALUE)
+                .addComponent(btnListar)
+                .addGap(260, 260, 260))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(284, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(260, 260, 260))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jButton1)
+                .addComponent(btnListar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        // TODO add your handling code here:
+        System.out.println("--..-- " + ctrlUsuario.getListaObjetos());
+        System.out.println("::--:: " + ctrlAuto.getListaObjetos());
+        llenarTablaUsuarios(ctrlUsuario.getListaObjetos());
+        llenarTablaTicket(ctrlAuto.getListaObjetos());
+    }//GEN-LAST:event_btnListarActionPerformed
 
+    public void llenarTablaUsuarios(List<Usuario> listaUsu) {
+        DefaultTableModel modelo = (DefaultTableModel) tblUsuarios.getModel();
+        modelo.setRowCount(0);
+        for (int i = 0; i < listaUsu.size(); i++) {
+            var us = listaUsu.get(i);
+
+            Object[] datos = {us.getCedula(), us.getNombre(), us.getApellido(),
+                us.getTelefono(), us.getCorreo(), us.getCotrasenia()};
+            modelo.addRow(datos);
+        }
+
+        tblUsuarios.setModel(modelo);
+    }
+
+    public void llenarTablaTicket(List<Automovil> listaTk) {
+        DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
+        modelo.setRowCount(0);
+        for (int i = 0; i < listaTk.size(); i++) {
+            var tk = listaTk.get(i);
+            String fSalida = tk.getTicket().getFechaSalida().toString();
+            if (tk.getTicket().getFechaSalida() != null) {
+                System.out.println("cedula " + tk.getTicket().getCedula());
+//                fSalida = tk.getTicket().getFechaSalida().toString();
+                Object[] datos = {tk.getTicket().getId(), tk.getTicket().getLugar(), tk.getTicket().getTipoContrato(),
+                    tk.getPlaca(), tk.getModelo(), tk.getColor(), tk.getTicket().getFechaIngreso().toString(), fSalida};
+                modelo.addRow(datos);
+            }else{
+                
+            }
+        }
+
+        tblTickets.setModel(modelo);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnListar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable tablaContratos;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblTickets;
+    private javax.swing.JTable tblUsuarios;
     // End of variables declaration//GEN-END:variables
 }

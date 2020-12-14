@@ -64,6 +64,23 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Registrar");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/imagenes/register.png"))); // NOI18N
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         txtNombre.setText("2");
 
@@ -195,10 +212,10 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (cbxTipoTelf.getSelectedIndex() == 1) {
             txtTelefono.setEditable(true);
-            txtTelefono.setText("2424242");
+            txtTelefono.setToolTipText("2424242");
         }else if (cbxTipoTelf.getSelectedIndex() == 2) {
             txtTelefono.setEditable(true);
-            txtTelefono.setText("0984851714");
+            txtTelefono.setToolTipText("0984851714");
         }
     }//GEN-LAST:event_cbxTipoTelfActionPerformed
 
@@ -244,6 +261,13 @@ public class VntRegistrarUsuario extends javax.swing.JInternalFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here:
+        limpiar();
+        txtCedula.setText("");
+        txtTelefono.setEditable(false);
+    }//GEN-LAST:event_formInternalFrameActivated
     
     public boolean telefono(String telefono) {
         if (cbxTipoTelf.getSelectedItem().equals("Casa")) {

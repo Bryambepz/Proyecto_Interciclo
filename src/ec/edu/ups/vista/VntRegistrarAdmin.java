@@ -256,6 +256,8 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // TODO add your handling code here:
+        limpiar();
+        txtCedula.setText("");
         txtTelefono.setEditable(false);
     }//GEN-LAST:event_formInternalFrameActivated
 
@@ -263,10 +265,10 @@ public class VntRegistrarAdmin extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (cbxTipoTelf.getSelectedIndex() == 1) {
             txtTelefono.setEditable(true);
-            txtTelefono.setText("2424242");
+            txtTelefono.setToolTipText("2424242");
         } else if (cbxTipoTelf.getSelectedIndex() == 2) {
             txtTelefono.setEditable(true);
-            txtTelefono.setText("0984851714");
+            txtTelefono.setToolTipText("0984851714");
         }
     }//GEN-LAST:event_cbxTipoTelfActionPerformed
 
